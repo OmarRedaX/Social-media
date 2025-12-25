@@ -1,0 +1,67 @@
+***********************************************************Social media App***************************************************
+============================================
+1-SDLC 40min to 1h
+	1.1 what is DLC and it's stage
+	1.2 waterfall
+	1.3 iterative 
+	1.4 spiral
+	1.5 Agile 
+	1.6 Trello // workshop
+	1.7 Structural vs OOP  // https://www.geeksforgeeks.org/difference-between-structured-and-object-oriented-analysis/
+	1.8 Discuss project SDLC and build the class diagram(simple version) 
+------------------------------------Project Idea-----------------
+Social media app is a platform for online communication  where users can add , edit post  comments and  reply  beside upload images  and full profile control 
+while admin mentor all the flow and can block or re-activate users accounts 
+------------------------------------------Helper Links-----------------------------------------
+https://www.one-beyond.com/pros-cons-waterfall-software-development/
+https://www.tutorialspoint.com/sdlc/sdlc_iterative_model.htm#
+https://www.guru99.com/what-is-spiral-model-when-to-use-advantages-disadvantages.html
+https://www.geeksforgeeks.org/top-8-software-development-models-used-in-industry/#3-incremental-model
+----------------------------------------Project modules---------------------------
+2-Modles 3h - 4h
+	2.1 AUTH & user model (DB)
+		2.1.1 signup (Confirm email  using otp (hash) , hash password )
+		2.1.1 confirm otp  // hint assignment add expire time to OTP
+		2.1.2 login (access-token , refresh-token)
+		2.1.3 refresh token endpoint
+		2.1.4 forget/reset password using otp  and email  after rest  unset the code
+		2.1.5 social login gmail
+=============================================
+--------------------------
+	2.2-USER 4.5h
+		2.2.1-user crud
+			2.2.1.1 update basic info 
+			2.2.1.2 update password  
+			2.2.1.3 update email otp / temp email
+			2.2.1.4 get profile & share profile
+			2.2.1.5 Multer 
+				2.2.1.5.1 simple
+				2.2.1.5.2 disk storage and file system 
+				2.2.1.5.3 cloud (cloudinary + if we can s3)
+------------------------- (3)
+	2.3 POST-COMMENT-REPLY & post & comment model DB   //  hint we will apply parent-child , child-parent and virual populate  + mergParams and strict on url 
+		2.3.1- CRUD (title  , image  , content ) // assignment  mention  by sending email  after mention in post or comment
+                2.3.2- like / unlike 
+                2.3.2 Comment
+                	2.3.2.1 CRUD // assignment  mention  by sending email  after mention in comment
+                        2.3.2.2 like-unlike on comment
+===========================================
+------------------------ 1-2h
+	2.4 ADMIN  // recomment to use all-satelled as promise base 
+ 		2.4.1  list all users 
+		2.4.2  list all posts 
+		2.4.3  block account-post-comment
+--------------------
+	2.5 Deployment 
+		vercel
+		render
+		even node
+		aws
+                   
+
+                       
+                
+
+
+		
+  
