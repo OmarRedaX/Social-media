@@ -7,6 +7,9 @@ import { globalErrorHangling } from './utils/response/error.response.js';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet'
+import { createHandler } from 'graphql-http/lib/use/express';
+import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
+import { schema } from './modules/app.graph.js';
  
  const limiter = rateLimit({
     limit: 10,
@@ -62,6 +65,8 @@ import helmet from 'helmet'
 
     app.use(express.json()) // convert buffer data to json
 
+
+    app.use("/graphql", createHandler({schema: schema}) )
     // Application routes
     app.get('/', (req, res) => res.send('Hello World!'))
 

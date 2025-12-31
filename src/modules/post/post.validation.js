@@ -28,3 +28,9 @@ export const likePost = joi.object().keys({
     action: joi.string().valid('like', 'unlike').required(),
     postId: gerneralFields.id.required()
 }).required();
+
+export const likePostGraph = joi.object().keys({
+    action: joi.string().valid('like', 'unlike').required(),
+    postId: gerneralFields.id.required(),
+    authorization: joi.string().required()
+}).required();

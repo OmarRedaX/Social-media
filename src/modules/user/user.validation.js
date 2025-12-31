@@ -67,3 +67,4 @@ export const friendsRequest = joi.object().keys({
 export const blockUser = joi.object().keys({
     email: gerneralFields.email.required()
 }).required();
+
