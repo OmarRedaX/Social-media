@@ -62,3 +62,5 @@ userSchema.pre('save', function(){
  
 
 export const userModel = mongoose.models.User || model("User", userSchema);
+
+export const socketConnections = new Map();

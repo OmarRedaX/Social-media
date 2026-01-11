@@ -3,6 +3,7 @@ import connectDB from './DB/connection.js';
 import authController from './modules/auth/auth.controller.js';
 import userController from './modules/user/user.controller.js';
 import postController from './modules/post/post.controller.js';
+import chatController from './modules/chat/chat.controller.js'
 import { globalErrorHangling } from './utils/response/error.response.js';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
@@ -74,6 +75,7 @@ import { schema } from './modules/app.graph.js';
     app.use('/auth', authController);
     app.use('/user', userController);
     app.use('/post', postController);
+    app.use('/chat', chatController)
 
     // 404 Route Handler 
     app.all('/*splat', (req,res,next)=>{

@@ -1,0 +1,41 @@
+Polling =>
+		How it works: The client repeatedly sends requests to the server at regular intervals, asking if there's new data.
+		Use case: Simple applications where frequent updates aren't critical.
+		Downside: Inefficient due to constant requests, even when there's no new data.
+-------------------------------------------------------------
+Long Polling
+
+		How it works: The client sends a request to the server, and the server holds the connection open until new data is available or the timeout 		occurs.
+		Use case: More efficient than polling, commonly used in chat applications.
+		Downside: Increases server resource usage.
+------------------------------------------------------------
+Server-Sent Events (SSE)
+
+		How it works: The server sends updates to the client over a single HTTP connection.
+		Use case: Ideal for unidirectional updates (e.g., live news, stock prices).
+		Downside: Limited to one-way communication (server to client).
+		EX:
+			app.get('/events', (req, res) => {
+  					res.setHeader('Content-Type', 'text/event-stream');
+  					res.setHeader('Cache-Control', 'no-cache');
+  					res.setHeader('Connection', 'keep-alive');
+
+  					setInterval(() => {
+    						res.write(`data: ${JSON.stringify({ message: 'New event!' })}\n\n`);
+  					}, 2000);
+			});
+--------------------------------------------------------------
+WebSockets
+
+		How it works: Establishes a full-duplex communication channel over a single TCP connection.
+		Use case: Suitable for two-way communication (e.g., chat apps, multiplayer games).
+		Downside: Requires a persistent connection and can be complex to implement
+--------------------------------------
+Socket.IO
+          is a library built on top of WebSocket (and other technologies) to provide additional features and better cross-browser support.
+
+	 use case
+		You need cross-browser compatibility.
+		You want built-in features like automatic reconnection, rooms, and namespaces.
+		You need fallback mechanisms for older browsers or unstable network environments.
+		You want to focus on application logic without handling low-level WebSocket intricacies.

@@ -63,9 +63,13 @@ export const profile = asyncHandler(async (req, res, next) => {
 
     const user = await dbService.findOne({
         model: userModel,
-        filter: { _id: req.user._id, isDeleted: false },
+        filter: { _id: req.user._id, isDeleted: {$exists:false} },
         populate: [{ 
             path: "viewers.userId",
+            select: "username email image"
+        },
+        {
+            path: "friendsList.userId",
             select: "username email image"
         }]
     

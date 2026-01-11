@@ -3,9 +3,11 @@ import { asyncHandler } from "../../../utils/response/error.response.js";
 import * as dbService from "../../../DB/db.service.js";
 import { postModel } from "../../../DB/model/Post.model.js";
 import { successResponse } from "../../../utils/response/success.response.js";
-import { roleTypes, userModel } from "../../../DB/model/User.model.js";
+import { roleTypes, socketConnections, userModel } from "../../../DB/model/User.model.js";
 import { commentModel } from "../../../DB/model/Comment.model.js";
 import { paginate } from "../../../utils/pagination/pagination.js";
+import { isObjectIdOrHexString } from "mongoose";
+import { getIo } from "../../socket/socket.controller.js";
 
 
 export const getPosts = asyncHandler(async (req, res, next) => {
@@ -362,9 +364,12 @@ export const likePost = asyncHandler(async (req, res) => {
         options: { new: true }
     })
 
-    return post ? successResponse({ res, message: `${req.query.action === 'like' ? 'Post liked successfully' : 'Post unliked successfully'}` , status: 200 , data: {post} })
-    : next(new Error("Post not found" , { cause: 404 }));
+    if(!post){
+        return next(new Error("Post not found" , { cause: 404 }));
+    }
 
+    getIo().to(socketConnections.get(post.createdBy.toString())).emit('likePost' , { postId: post._id , userId: req.user._id , action: req.query.action });
+    return successResponse({ res, message: `${req.query.action === 'like' ? 'Post liked successfully' : 'Post unliked successfully'}` , status: 200 , data: {post} })
 })
 
 
